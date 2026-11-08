@@ -100,6 +100,27 @@
       .btn:hover {
         background: var(--navy-2);
       }
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .link {
+        color: var(--navy-2);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
+      .note {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin: 4px 0 0;
+      }
       footer {
         text-align: center;
         color: var(--muted);
@@ -134,11 +155,14 @@
           <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
           <li>IRC 7: fixed viewing</li>
         </ul>
-        <a
-          class="btn"
-          href="https://github.com/n-renz0801/Project-IRC/releases/tag/v1.5.0"
-          >View release</a
-        >
+        <div class="actions">
+          <a
+            class="btn"
+            href="https://github.com/n-renz0801/Project-IRC/releases/download/v1.5.0/SGOD_IRC.exe"
+            download
+            >Download for Windows</a
+          >
+        </div>
       </section>
 
       <section class="card">
@@ -150,11 +174,14 @@
           <li>Fixed report signatories showing the wrong name and position</li>
           <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
         </ul>
-        <a
-          class="btn"
-          href="https://github.com/n-renz0801/Project-IRC-Jho/releases/tag/v1.0.1"
-          >View release</a
-        >
+        <div class="actions">
+          <a
+            class="btn"
+            href="https://github.com/n-renz0801/Project-IRC-Jho/releases/download/v1.0.1/SGOD_IRC_JHO.exe"
+            download
+            >Download for Windows</a
+          >
+        </div>
       </section>
 
       <section class="card">
@@ -172,12 +199,19 @@
             OPCRF I: fixed long MOV links hiding the Edit and Delete buttons
           </li>
         </ul>
-        <a
-          class="btn"
-          href="https://github.com/n-renz0801/Integrated-System/releases/tag/v1.3.0"
-          >View release</a
-        >
+        <div class="actions">
+          <a
+            class="btn"
+            href="https://github.com/n-renz0801/Integrated-System/releases/download/v1.3.0/project_measure.exe"
+            download
+            >Download for Windows</a
+          >
+        </div>
       </section>
+      <p class="note">
+        Windows may show a SmartScreen warning for unsigned apps. Choose
+        <strong>More info &rarr; Run anyway</strong>.
+      </p>
     </main>
 
     <footer>
