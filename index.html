@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SGOD System Updates</title>
+    <style>
+      :root {
+        --navy: #001550;
+        --navy-2: #0f2557;
+        --ink: #0f172a;
+        --muted: #5b6475;
+        --line: #dfe5f0;
+        --bg: #f4f6fb;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.5;
+      }
+      header {
+        background: var(--navy);
+        color: #fff;
+        padding: 40px 20px 44px;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        letter-spacing: 0.02em;
+      }
+      header p {
+        margin: 0;
+        color: #b9c4e2;
+        font-size: 15px;
+      }
+      main {
+        max-width: 760px;
+        margin: -22px auto 48px;
+        padding: 0 16px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 10px rgba(0, 21, 80, 0.06);
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .card h2 {
+        margin: 0;
+        font-size: 19px;
+        color: var(--navy);
+      }
+      .badge {
+        background: var(--navy);
+        color: #fff;
+        font-size: 12.5px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 999px;
+      }
+      .card ul {
+        margin: 0 0 16px;
+        padding-left: 20px;
+        color: #2b3445;
+        font-size: 14.5px;
+      }
+      .card li {
+        margin: 4px 0;
+      }
+      .btn {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 9px 16px;
+        border-radius: 8px;
+      }
+      .btn:hover {
+        background: var(--navy-2);
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13.5px;
+        padding: 0 16px 40px;
+      }
+      footer a {
+        color: var(--navy-2);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>SGOD System Updates</h1>
+      <p>Latest releases &middot; November 9, 2026</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="top">
+          <h2>Project IRC (Personnel)</h2>
+          <span class="badge">v1.5.0</span>
+        </div>
+        <ul>
+          <li>New IRC 8B display style</li>
+          <li>
+            IRC 8A form updated to Strand / Bureau / Center / Service / Region /
+            Division / School
+          </li>
+          <li>IRC 9 now sorts by date automatically</li>
+          <li>IRC 8D table continues onto the next page</li>
+          <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
+          <li>IRC 7: fixed viewing</li>
+        </ul>
+        <a
+          class="btn"
+          href="https://github.com/n-renz0801/Project-IRC/releases/tag/v1.5.0"
+          >View release</a
+        >
+      </section>
+
+      <section class="card">
+        <div class="top">
+          <h2>Project IRC (CES)</h2>
+          <span class="badge">v1.0.1</span>
+        </div>
+        <ul>
+          <li>Fixed report signatories showing the wrong name and position</li>
+          <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
+        </ul>
+        <a
+          class="btn"
+          href="https://github.com/n-renz0801/Project-IRC-Jho/releases/tag/v1.0.1"
+          >View release</a
+        >
+      </section>
+
+      <section class="card">
+        <div class="top">
+          <h2>Project MEASURE</h2>
+          <span class="badge">v1.3.0</span>
+        </div>
+        <ul>
+          <li>New SBM and AIP pages</li>
+          <li>
+            OPCRF I: added "School" to the Strand / Bureau / Center / Service /
+            Region / Division / School options
+          </li>
+          <li>
+            OPCRF I: fixed long MOV links hiding the Edit and Delete buttons
+          </li>
+        </ul>
+        <a
+          class="btn"
+          href="https://github.com/n-renz0801/Integrated-System/releases/tag/v1.3.0"
+          >View release</a
+        >
+      </section>
+    </main>
+
+    <footer>
+      Found a bug or have a suggestion? Open an issue in the repository and let
+      us know.
+    </footer>
+  </body>
+</html>
