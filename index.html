@@ -134,8 +134,13 @@
         flex-direction: column;
         gap: 20px;
         box-shadow:
-          0 1px 2px rgba(0, 51, 160, 0.05),
-          0 10px 30px rgba(0, 51, 160, 0.07);
+          0 1px 2px rgba(0, 51, 160, 0.04),
+          0 4px 14px rgba(0, 51, 160, 0.05);
+        transform: scale(0.965);
+        transform-origin: center top;
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+          box-shadow 0.35s ease;
       }
       .ch {
         display: flex;
@@ -352,6 +357,25 @@
       .btn:hover {
         background: var(--navy-dark);
       }
+      .card.is-active {
+        transform: scale(1);
+        box-shadow:
+          0 1px 2px rgba(0, 51, 160, 0.05),
+          0 12px 36px rgba(0, 51, 160, 0.11);
+      }
+      .card:hover {
+        box-shadow:
+          0 0 0 1px rgba(0, 51, 160, 0.14),
+          0 2px 4px rgba(0, 51, 160, 0.06),
+          0 18px 44px rgba(0, 51, 160, 0.15);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .card,
+        .card.is-active {
+          transform: none;
+          transition: none;
+        }
+      }
 
       .note {
         margin: 36px 0 0;
@@ -428,9 +452,10 @@
    The previous one automatically becomes history (reachable with the
    back arrow, without a download button).
    Change types: "new", "improved", "fixed".
-   A "New" badge shows for NEW_DAYS days after the latest release date.
+   A "New" badge shows on a card only while its latest release has
+   badge: true. Add it to the newest release, and remove it from the older
+   one, so only the project that just updated shows the badge.
 ------------------------------------------------------------------- */
-      const NEW_DAYS = 14;
 
       const PROJECTS = [
         {
@@ -466,6 +491,26 @@
           logo: "images/project_irc.png",
           alt: "Project IRC Logo",
           releases: [
+            {
+              version: "1.1.0",
+              date: "2026-11-09",
+              badge: true,
+              url: "https://github.com/n-renz0801/Project-IRC-Jho/releases/download/v1.1.0/SGOD_IRC_JHO.exe",
+              changes: [
+                [
+                  "improved",
+                  "IRC 8C redesigned: overall score and rating scale on top, with a clearer components table and Part subtotals",
+                ],
+                [
+                  "improved",
+                  "Report signatory names are centered and wide enough for long names",
+                ],
+                [
+                  "fixed",
+                  "The Checked by name is now saved and no longer disappears after a reload, tab switch, or restart",
+                ],
+              ],
+            },
             {
               version: "1.0.1",
               date: "2026-11-09",
@@ -512,14 +557,13 @@
       const LABEL = { new: "New", improved: "Improved", fixed: "Fixed" };
       const PREVIEW = 3;
       const state = PROJECTS.map(() => ({ i: 0, open: false }));
+      let active = 0;
       const fmt = (d) =>
         new Date(d + "T00:00:00").toLocaleDateString("en-US", {
           month: "long",
           day: "numeric",
           year: "numeric",
         });
-      const isNew = (d) =>
-        (Date.now() - new Date(d + "T00:00:00")) / 864e5 <= NEW_DAYS;
       const chev = (p) =>
         `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${p}"/></svg>`;
 
@@ -547,11 +591,11 @@
             : "<span></span>";
         const name = p.tag ? `${p.name} ${p.tag}` : p.name;
         return `
-  <article class="card" aria-label="${name}">
+  <article class="card${n === active ? " is-active" : ""}" aria-label="${name}">
     <header class="ch">
       <img src="${p.logo}" alt="${p.alt}" onerror="this.style.display='none'">
       <div class="id"><h2>${p.name}</h2>${p.tag ? `<span class="tag">${p.tag}</span>` : ""}</div>
-      ${!older && isNew(r.date) ? '<span class="badge">New</span>' : ""}
+      ${!older && r.badge ? '<span class="badge">New</span>' : ""}
     </header>
     <div class="ver">
       <div><div class="vn">v${r.version}</div><div class="dt">${older ? "Released" : "Updated"} ${fmt(r.date)}</div></div>
@@ -573,7 +617,45 @@
           const el = grid.querySelector(focusSel);
           if (el) el.focus();
         }
+        pick();
       }
+
+      /* The card crossing the middle of the screen is the active one. */
+      function pick() {
+        const mid = innerHeight / 2,
+          cards = [...grid.children];
+        let best = active,
+          bd = Infinity;
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const d =
+            r.top <= mid && r.bottom >= mid
+              ? 0
+              : Math.min(Math.abs(r.top - mid), Math.abs(r.bottom - mid));
+          if (d < bd) {
+            bd = d;
+            best = i;
+          }
+        });
+        if (best !== active) {
+          active = best;
+          cards.forEach((c, i) =>
+            c.classList.toggle("is-active", i === active),
+          );
+        }
+      }
+      let tick = false;
+      const onMove = () => {
+        if (!tick) {
+          tick = true;
+          requestAnimationFrame(() => {
+            tick = false;
+            pick();
+          });
+        }
+      };
+      addEventListener("scroll", onMove, { passive: true });
+      addEventListener("resize", onMove);
       grid.addEventListener("click", (e) => {
         const b = e.target.closest("button[data-act]");
         if (!b) return;
