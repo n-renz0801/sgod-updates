@@ -4,14 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SGOD System Updates</title>
+    <meta
+      name="description"
+      content="Latest releases and version history of the SGOD systems."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --navy: #001550;
-        --navy-2: #0f2557;
-        --ink: #0f172a;
-        --muted: #5b6475;
-        --line: #dfe5f0;
+        --navy: #0033a0;
+        --navy-dark: #00247a;
+        --navy-deep: #001550;
+        --gold: #fcd116;
+        --gold-soft: #fff4bd;
+        --tint: #eaf0fc;
         --bg: #f4f6fb;
+        --white: #fff;
+        --text: #1a1a2e;
+        --text-light: #5a6a8a;
+        --border: #d0d8ec;
+        --shadow: rgba(0, 51, 160, 0.12);
+        --font:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+          "Inter", "Segoe UI", system-ui, sans-serif;
       }
       * {
         box-sizing: border-box;
@@ -19,204 +38,438 @@
       body {
         margin: 0;
         background: var(--bg);
-        color: var(--ink);
-        font-family:
-          system-ui,
-          -apple-system,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        color: var(--text);
+        font-family: var(--font);
         line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        font-variant-numeric: tabular-nums;
       }
-      header {
-        background: var(--navy);
-        color: #fff;
-        padding: 40px 20px 44px;
-        text-align: center;
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
       }
-      header h1 {
-        margin: 0 0 6px;
-        font-size: 28px;
+      :focus-visible {
+        outline: 3px solid var(--navy);
+        outline-offset: 2px;
+        border-radius: 8px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        font-size: 14px;
+        color: var(--text-light);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--navy-deep);
         letter-spacing: 0.02em;
       }
-      header p {
-        margin: 0;
-        color: #b9c4e2;
-        font-size: 15px;
+      .logo i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
       }
-      main {
-        max-width: 760px;
-        margin: -22px auto 48px;
-        padding: 0 16px;
+
+      .hero {
+        padding: 64px 0 48px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(38px, 6vw, 60px);
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        font-weight: 700;
+        color: var(--navy-deep);
+      }
+      .lead {
+        margin: 0;
+        font-size: 19px;
+        color: var(--text-light);
+        max-width: 480px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        gap: 20px;
+        align-items: stretch;
       }
       .card {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 22px 24px;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 10px rgba(0, 21, 80, 0.06);
+        background: var(--white);
+        border-radius: 22px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        box-shadow:
+          0 1px 2px rgba(0, 51, 160, 0.06),
+          0 8px 28px rgba(0, 51, 160, 0.08);
       }
       .top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 10px;
+        min-height: 26px;
+      }
+      .tag {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-light);
+      }
+      .badge {
+        background: var(--gold);
+        color: var(--navy-deep);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 11px;
+        border-radius: 999px;
       }
       .card h2 {
         margin: 0;
-        font-size: 19px;
-        color: var(--navy);
+        font-size: 24px;
+        letter-spacing: -0.02em;
+        font-weight: 650;
+        color: var(--navy-deep);
       }
-      .badge {
-        background: var(--navy);
-        color: #fff;
-        font-size: 12.5px;
-        font-weight: 600;
-        padding: 4px 12px;
-        border-radius: 999px;
-      }
-      .card ul {
-        margin: 0 0 16px;
-        padding-left: 20px;
-        color: #2b3445;
-        font-size: 14.5px;
-      }
-      .card li {
-        margin: 4px 0;
-      }
-      .btn {
-        display: inline-block;
-        background: var(--navy);
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        padding: 9px 16px;
-        border-radius: 8px;
-      }
-      .btn:hover {
-        background: var(--navy-2);
-      }
-      .actions {
+      .meta {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 12px;
         flex-wrap: wrap;
+        font-size: 13.5px;
+        color: var(--text-light);
       }
-      .link {
-        color: var(--navy-2);
-        font-size: 14px;
+      .vs {
+        display: flex;
+        align-items: center;
+        background: var(--tint);
+        border-radius: 999px;
+        padding: 2px;
+      }
+      .vs b {
         font-weight: 600;
-        text-decoration: none;
+        font-size: 13px;
+        color: var(--navy);
+        padding: 0 10px;
+        min-width: 58px;
+        text-align: center;
       }
-      .link:hover {
+      .ar {
+        width: 36px;
+        height: 36px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 0;
+      }
+      .ar:hover:not(:disabled) {
+        background: var(--white);
+      }
+      .ar:disabled {
+        color: #a9b4d0;
+        cursor: default;
+      }
+      .ban {
+        background: var(--tint);
+        color: var(--navy-deep);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+      .ban button {
+        border: 0;
+        background: none;
+        padding: 0;
+        font: inherit;
+        font-weight: 600;
+        color: var(--navy);
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .list {
+        margin: 2px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .list li {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding: 7px 0;
+        font-size: 15px;
+        color: #2b3047;
+      }
+      .chip {
+        flex: none;
+        width: 72px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 0;
+        border-radius: 999px;
+      }
+      .chip.new {
+        background: var(--tint);
+        color: var(--navy);
+      }
+      .chip.improved {
+        background: var(--gold-soft);
+        color: #4a3b00;
+      }
+      .chip.fixed {
+        background: #e9ecf3;
+        color: #35405a;
+      }
+      .toggle {
+        align-self: flex-start;
+        border: 0;
+        background: none;
+        padding: 6px 0;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--navy);
+        cursor: pointer;
+      }
+      .toggle:hover {
         text-decoration: underline;
       }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        border-radius: 12px;
+        background: var(--navy);
+        color: var(--white);
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        margin-top: auto;
+      }
+      .btn:hover {
+        background: var(--navy-dark);
+      }
+      .spacer {
+        margin-top: auto;
+      }
+
       .note {
-        text-align: center;
-        color: var(--muted);
-        font-size: 13px;
-        margin: 4px 0 0;
+        margin: 36px 0 0;
+        padding: 18px 22px;
+        border-radius: 16px;
+        background: var(--tint);
+        color: var(--navy-deep);
+        font-size: 14px;
       }
       footer {
-        text-align: center;
-        color: var(--muted);
+        padding: 28px 0 56px;
         font-size: 13.5px;
-        padding: 0 16px 40px;
+        color: var(--text-light);
       }
-      footer a {
-        color: var(--navy-2);
+      @media (max-width: 480px) {
+        .wrap {
+          padding: 0 16px;
+        }
+        .hero {
+          padding: 40px 0 32px;
+        }
+        .card {
+          padding: 22px;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>SGOD System Updates</h1>
-      <p>Latest releases &middot; November 9, 2026</p>
-    </header>
-
-    <main>
-      <section class="card">
-        <div class="top">
-          <h2>Project IRC (Personnel)</h2>
-          <span class="badge">v1.5.0</span>
-        </div>
-        <ul>
-          <li>New IRC 8B display style</li>
-          <li>
-            IRC 8A form updated to Strand / Bureau / Center / Service / Region /
-            Division / School
-          </li>
-          <li>IRC 9 now sorts by date automatically</li>
-          <li>IRC 8D table continues onto the next page</li>
-          <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
-          <li>IRC 7: fixed viewing</li>
-        </ul>
-        <div class="actions">
-          <a
-            class="btn"
-            href="https://github.com/n-renz0801/Project-IRC/releases/download/v1.5.0/SGOD_IRC.exe"
-            download
-            >Download for Windows</a
-          >
-        </div>
+    <div class="wrap">
+      <div class="nav">
+        <span class="logo"><i></i>SGOD</span><span id="asof"></span>
+      </div>
+      <section class="hero">
+        <h1>System Updates</h1>
+        <p class="lead">
+          The latest release of every SGOD tool. Always use the newest version.
+        </p>
       </section>
+      <main>
+        <div class="grid" id="grid"></div>
+        <p class="note">
+          Windows may show a SmartScreen warning because the apps are unsigned.
+          Choose <b>More info</b>, then <b>Run anyway</b>.
+        </p>
+      </main>
+      <footer>
+        Found a bug or have a suggestion? Open an issue in the repository and
+        let us know.
+      </footer>
+    </div>
 
-      <section class="card">
-        <div class="top">
-          <h2>Project IRC (CES)</h2>
-          <span class="badge">v1.0.1</span>
-        </div>
-        <ul>
-          <li>Fixed report signatories showing the wrong name and position</li>
-          <li>Fixed long MOV links hiding the Edit and Delete buttons</li>
-        </ul>
-        <div class="actions">
-          <a
-            class="btn"
-            href="https://github.com/n-renz0801/Project-IRC-Jho/releases/download/v1.0.1/SGOD_IRC_JHO.exe"
-            download
-            >Download for Windows</a
-          >
-        </div>
-      </section>
+    <script>
+      /* ------------------------------------------------------------------
+   HOW TO ADD A RELEASE
+   Put the new release at the TOP of that project's "releases" list.
+   The previous one automatically becomes history (reachable with the
+   back arrow, without a download button).
+   Change types: "new", "improved", "fixed".
+   A "New" badge shows for NEW_DAYS days after the latest release date.
+------------------------------------------------------------------- */
+      const NEW_DAYS = 14;
 
-      <section class="card">
-        <div class="top">
-          <h2>Project MEASURE</h2>
-          <span class="badge">v1.3.0</span>
-        </div>
-        <ul>
-          <li>New SBM and AIP pages</li>
-          <li>
-            OPCRF I: added "School" to the Strand / Bureau / Center / Service /
-            Region / Division / School options
-          </li>
-          <li>
-            OPCRF I: fixed long MOV links hiding the Edit and Delete buttons
-          </li>
-        </ul>
-        <div class="actions">
-          <a
-            class="btn"
-            href="https://github.com/n-renz0801/Integrated-System/releases/download/v1.3.0/project_measure.exe"
-            download
-            >Download for Windows</a
-          >
-        </div>
-      </section>
-      <p class="note">
-        Windows may show a SmartScreen warning for unsigned apps. Choose
-        <strong>More info &rarr; Run anyway</strong>.
-      </p>
-    </main>
+      const PROJECTS = [
+        {
+          name: "Project IRC",
+          tag: "Personnel",
+          releases: [
+            {
+              version: "1.5.0",
+              date: "2026-11-09",
+              url: "https://github.com/n-renz0801/Project-IRC/releases/download/v1.5.0/SGOD_IRC.exe",
+              changes: [
+                ["new", "New IRC 8B display style"],
+                [
+                  "improved",
+                  "IRC 8A form updated to Strand / Bureau / Center / Service / Region / Division / School",
+                ],
+                ["improved", "IRC 9 now sorts by date automatically"],
+                ["improved", "IRC 8D table continues onto the next page"],
+                [
+                  "fixed",
+                  "Long MOV links no longer hide the Edit and Delete buttons",
+                ],
+                ["fixed", "IRC 7: fixed viewing"],
+              ],
+            },
+          ],
+        },
+        {
+          name: "Project IRC",
+          tag: "CES",
+          releases: [
+            {
+              version: "1.0.1",
+              date: "2026-11-09",
+              url: "https://github.com/n-renz0801/Project-IRC-Jho/releases/download/v1.0.1/SGOD_IRC_JHO.exe",
+              changes: [
+                [
+                  "fixed",
+                  "Report signatories now show the correct name and position",
+                ],
+                [
+                  "fixed",
+                  "Long MOV links no longer hide the Edit and Delete buttons",
+                ],
+              ],
+            },
+          ],
+        },
+        {
+          name: "Project MEASURE",
+          tag: "",
+          releases: [
+            {
+              version: "1.3.0",
+              date: "2026-11-09",
+              url: "https://github.com/n-renz0801/Integrated-System/releases/download/v1.3.0/project_measure.exe",
+              changes: [
+                ["new", "New SBM and AIP pages"],
+                [
+                  "improved",
+                  "OPCRF I: added \u201CSchool\u201D to the Strand / Bureau / Center / Service / Region / Division / School options",
+                ],
+                [
+                  "fixed",
+                  "OPCRF I: long MOV links no longer hide the Edit and Delete buttons",
+                ],
+              ],
+            },
+          ],
+        },
+      ];
 
-    <footer>
-      Found a bug or have a suggestion? Open an issue in the repository and let
-      us know.
-    </footer>
+      const LABEL = { new: "New", improved: "Improved", fixed: "Fixed" };
+      const PREVIEW = 3;
+      const state = PROJECTS.map(() => ({ i: 0, open: false }));
+      const fmt = (d) =>
+        new Date(d + "T00:00:00").toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      const isNew = (d) =>
+        (Date.now() - new Date(d + "T00:00:00")) / 864e5 <= NEW_DAYS;
+      const chev = (p) =>
+        `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${p}"/></svg>`;
+
+      function card(p, n) {
+        const s = state[n],
+          r = p.releases[s.i],
+          latest = p.releases[0],
+          older = s.i > 0;
+        const shown = s.open ? r.changes : r.changes.slice(0, PREVIEW);
+        const hidden = r.changes.length - PREVIEW;
+        return `
+  <article class="card" aria-label="${p.name} ${p.tag}">
+    <div class="top"><span class="tag">${p.tag}</span>${!older && isNew(r.date) ? '<span class="badge">New</span>' : ""}</div>
+    <h2>${p.name}</h2>
+    <div class="meta">
+      <div class="vs">
+        <button class="ar" data-act="older" data-n="${n}" aria-label="Show previous version" ${s.i >= p.releases.length - 1 ? "disabled" : ""}>${chev("M9 2L4 7l5 5")}</button>
+        <b>v${r.version}</b>
+        <button class="ar" data-act="newer" data-n="${n}" aria-label="Show next version" ${s.i === 0 ? "disabled" : ""}>${chev("M5 2l5 5-5 5")}</button>
+      </div>
+      <span>${older ? "Released" : "Updated"} ${fmt(r.date)}</span>
+    </div>
+    ${older ? `<div class="ban">Older version. Please use the latest, v${latest.version}. <button data-act="latest" data-n="${n}">Go to latest</button></div>` : ""}
+    <ul class="list">${shown.map(([t, x]) => `<li><span class="chip ${t}">${LABEL[t]}</span><span>${x}</span></li>`).join("")}</ul>
+    ${hidden > 0 ? `<button class="toggle" data-act="toggle" data-n="${n}" aria-expanded="${s.open}">${s.open ? "Show fewer changes" : `Show all ${r.changes.length} changes`}</button>` : ""}
+    ${older ? '<span class="spacer"></span>' : `<a class="btn" href="${r.url}" download>Download for Windows</a>`}
+  </article>`;
+      }
+
+      const grid = document.getElementById("grid");
+      function render(focusSel) {
+        grid.innerHTML = PROJECTS.map(card).join("");
+        if (focusSel) {
+          const el = grid.querySelector(focusSel);
+          if (el) el.focus();
+        }
+      }
+      grid.addEventListener("click", (e) => {
+        const b = e.target.closest("button[data-act]");
+        if (!b) return;
+        const n = +b.dataset.n,
+          s = state[n],
+          max = PROJECTS[n].releases.length - 1;
+        const act = b.dataset.act;
+        if (act === "older") s.i = Math.min(s.i + 1, max);
+        if (act === "newer") s.i = Math.max(s.i - 1, 0);
+        if (act === "latest") s.i = 0;
+        if (act === "toggle") s.open = !s.open;
+        render(
+          `button[data-act="${act === "latest" ? "older" : act}"][data-n="${n}"]:not(:disabled)`,
+        );
+      });
+
+      const latestDate = PROJECTS.map((p) => p.releases[0].date)
+        .sort()
+        .pop();
+      document.getElementById("asof").textContent =
+        "Last updated " + fmt(latestDate);
+      render();
+    </script>
   </body>
 </html>
